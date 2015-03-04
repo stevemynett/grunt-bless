@@ -24,6 +24,7 @@ module.exports = function(grunt) {
 			logCount: false,
 			force: grunt.option('force') || false,
 			warnLimit: 4000,
+			failIfOver: false,
 			imports: true
 		});
 		grunt.log.writeflags(options, 'options');
@@ -80,6 +81,9 @@ module.exports = function(grunt) {
 
 					if (overLimit) {
 						grunt.log.errorlns(coungMsg + ' IE8-9 will read only first ' + limit + '!');
+							if (options.failIfOver) {
+								grunt.fail.warn();
+							}
 					} else if (options.logCount !== 'warn') {
 						grunt.log.oklns(coungMsg);
 					}
